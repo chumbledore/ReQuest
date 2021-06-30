@@ -9,6 +9,7 @@ namespace Models
         public int MachineID { get; set; } = 00000;
         public string TicketSubject { get; set; }
         public string TicketBody { get; set; }
+        public bool Status { get; set; } = false;
         public DateTime Date { get; set; }
     }
 }

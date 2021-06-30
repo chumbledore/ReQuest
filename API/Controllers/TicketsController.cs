@@ -17,15 +17,23 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Ticket>>> GetTickets()
+        public async Task<ActionResult<TicketResponse<List<Ticket>>>> GetTickets()
         {
-            return await _mediator.Send(new List.Query());
+            var response = new TicketResponse<List<Ticket>>();
+
+            response.Data = await Mediator.Send(new List.Query());
+
+            return Ok(response);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Ticket>> GetTicket(Guid id)
+        public async Task<ActionResult<TicketResponse<Ticket>>> GetTicket(Guid id)
         {
-            return await Mediator.Send(new GetTicket.Query{Id = id});
+            var response = new TicketResponse<Ticket>();
+
+            response.Data = await Mediator.Send(new GetTicket.Query{Id = id});
+
+            return Ok(response);
         }
 
         [HttpPost]

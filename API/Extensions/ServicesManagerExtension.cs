@@ -20,11 +20,9 @@ namespace API.Extensions
                     c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
                 });
 
-                // Adding EF Core, using SQLite
-                services.AddDbContext<DataContext>(opt =>
-                {
-                    opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
-                });
+                // Adding EF Core, using SQLServer
+                services.AddDbContext<DataContext>(options => 
+                    options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
 
                 //CORS policy to allow development interaction between front and backend
                 services.AddCors(opt => 
