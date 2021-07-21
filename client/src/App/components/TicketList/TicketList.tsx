@@ -9,7 +9,6 @@ import {
 import useStyles from "../../stylesHook";
 import { Ticket } from "../../viewmodels/ticketResponseVM";
 import TicketActions from "../TicketActions/TicketActions";
-import { border } from '@material-ui/system';
 
 const DUMMY_TICKETS: Ticket[] = [
   {
@@ -75,7 +74,7 @@ const TicketList = () => {
                   />
                   <Typography align="center">{ticket.ticketSubject}</Typography>
                   <Typography align="center">{ticket.ticketBody}</Typography>
-                  <Typography align="center">{ticket.date}</Typography>
+                  <Typography align="center" gutterBottom>{ticket.date}</Typography>
                   <TicketActions />
                 </CardContent>
               </Card>

@@ -1,4 +1,5 @@
-import useStyles from "../stylesHook";
+import useStyles from "../../../stylesHook";
+import clsx from 'clsx';
 import {
   AppBar,
   Toolbar,
@@ -10,28 +11,40 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 import Brightness1Icon from '@material-ui/icons/Brightness1';
 
-import { useAppDispatch, useAppSelector } from '../store/hooks/hooks';
-import { uiActions } from '../store/ui-slice';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks/hooks';
+import { uiActions } from '../../../store/ui-slice';
 
 function Header() {
   const dispatch = useAppDispatch();
   const classes = useStyles();
   const lightDarkThemeIcon = useAppSelector(state => state.ui.useDarkTheme);
+  const open = useAppSelector(state => state.ui.sideDrawerOpen);
 
   const themeToggleHandler = () => {
     dispatch(uiActions.toggleTheme());
   };
 
+  const openSideDrawerHandler = () => {
+    dispatch(uiActions.toggleSideDrawer());
+  }
+
 
   return (
-    <AppBar position="static" color="inherit">
+    <AppBar
+        position="fixed"
+        className={clsx(classes.appBar, {
+          [classes.appBarShift]: open,
+        })}
+        color="inherit"
+      >
       <Toolbar>
-        <IconButton
-          edge="start"
-          className={classes.menuButton}
-          color="inherit"
-          aria-label="menu"
-        >
+      <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={openSideDrawerHandler}
+            edge="start"
+            className={clsx(classes.menuButton, open && classes.hide)}
+          >
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" className={classes.title}>

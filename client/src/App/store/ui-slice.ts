@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 interface uiState {
-    useDarkTheme: boolean
+    useDarkTheme: boolean,
+    sideDrawerOpen: boolean
 };
 
 const initialState: uiState  = {
-    useDarkTheme: false,
+    useDarkTheme: true,
+    sideDrawerOpen: false
 }
 
 const uiSlice = createSlice({
@@ -14,6 +16,9 @@ const uiSlice = createSlice({
     reducers:{
         toggleTheme(state){
             state.useDarkTheme = !state.useDarkTheme;
+        },
+        toggleSideDrawer(state){
+            state.sideDrawerOpen = !state.sideDrawerOpen;
         }
     }
 })
