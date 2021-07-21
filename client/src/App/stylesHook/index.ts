@@ -4,7 +4,6 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       padding: theme.spacing(4, 0, 6),
-      backgroundColor: theme.palette.background.paper,
     },
     root: {
       flexGrow: 1,

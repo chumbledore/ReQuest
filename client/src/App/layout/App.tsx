@@ -1,13 +1,29 @@
-import React from 'react';
-
 import Header from './Header';
 import TicketDashboard from '../components/TicketDashboard/TicketDashboard';
 
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { useAppSelector } from '../store/hooks/hooks';
+
+
+
 function App() {
+  const darkMode = useAppSelector(state => state.ui.useDarkTheme);
+
+  const theme = createMuiTheme({
+    palette: {
+      type: darkMode ? 'dark' : 'light',
+    },
+  });
+  
   return (
     <>
-      <Header />
-      <TicketDashboard />
+      <ThemeProvider theme={theme}>
+      <CssBaseline />
+        <Header />
+        <TicketDashboard />
+      </ThemeProvider>
+      
     </>
   );
 }
