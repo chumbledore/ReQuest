@@ -1,14 +1,13 @@
-import Header from "./Header/Header";
-import SideDrawer from "./SideDrawer/SideDrawer";
-
+import { Header } from "./Header/Header";
+import { SideDrawer } from "./SideDrawer/SideDrawer";
 
 const Navigation = () => {
-    return (
-        <>
-        <Header />
-        <SideDrawer />
-        </>
-    )
-}
+  return (
+    <>
+      <Header />
+      <SideDrawer />
+    </>
+  );
+};
 
-export default Navigation
+export default Navigation;

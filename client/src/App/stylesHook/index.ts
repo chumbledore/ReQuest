@@ -5,7 +5,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
-      padding: theme.spacing(8, 0, 6),
+      padding: theme.spacing(12, 0, 6),
     },
     root: {
       flexGrow: 1,
