@@ -2,7 +2,7 @@ import TicketDashboard from '../components/TicketDashboard/TicketDashboard';
 
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { useAppSelector } from '../store/hooks/hooks';
+import { useAppSelector } from '../store/hooks';
 import Navigation from './Navigation/Navigation';
 
 

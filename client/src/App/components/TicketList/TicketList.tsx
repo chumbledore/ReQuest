@@ -7,10 +7,10 @@ import {
   Divider,
 } from "@material-ui/core";
 import useStyles from "../../stylesHook";
-import { useAppSelector } from "../../store/hooks/hooks";
-import TicketActions from "../TicketActions/TicketActions";
+import { useAppSelector } from "../../store/hooks";
+import { TicketCardButtons } from "../TicketCardButtons";
 
-const TicketList = () => {
+export const TicketList = () => {
   const tickets = useAppSelector((state) => state.ticket.tickets);
   const classes = useStyles();
   return (
@@ -33,7 +33,7 @@ const TicketList = () => {
                   <Typography align="center" gutterBottom>
                     {ticket.date}
                   </Typography>
-                  <TicketActions />
+                  <TicketCardButtons />
                 </CardContent>
               </Card>
             </Grid>
@@ -43,5 +43,3 @@ const TicketList = () => {
     </>
   );
 };
-
-export default TicketList;

@@ -13,7 +13,7 @@ const CompromiseButton = withStyles((theme: Theme) => ({
   },
 }))(Button);
 
-function TicketActions() {
+export const TicketCardButtons = () => {
   const classes = useStyles();
   return (
     <>
@@ -30,6 +30,4 @@ function TicketActions() {
       </CardActions>
     </>
   );
-}
-
-export default TicketActions;
+};

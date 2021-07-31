@@ -50,7 +50,7 @@ function Header() {
         <Typography variant="h6" className={classes.title}>
           Ticket Dashboard
         </Typography>
-        <IconButton edge="end" color="inherit">
+        <IconButton edge="end" color="inherit" onClick={}>
           <AddCircleOutlineIcon />
         </IconButton>
         <IconButton edge="end" color="inherit"  onClick={themeToggleHandler}>
