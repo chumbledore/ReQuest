@@ -16,9 +16,9 @@ export const TicketList = () => {
   return (
     <>
       <Container maxWidth="md">
-        <Grid container spacing={4}>
+        <Grid container direction="row" spacing={4} alignItems="center">
           {tickets.map((ticket) => (
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
               <Card className={classes.card}>
                 <CardContent className={classes.cardContent}>
                   <Typography variant="h5" color="textPrimary" align="center">
