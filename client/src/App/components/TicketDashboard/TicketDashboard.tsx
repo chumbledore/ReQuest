@@ -1,11 +1,19 @@
-import { Typography, Container } from "@material-ui/core";
+import { Typography, Container, IconButton } from "@material-ui/core";
 import { TicketList } from "../TicketList";
 import { TicketModal } from "../TicketModal";
+import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import { useAppDispatch } from "../../store/hooks";
+import { uiActions } from "../../store/ui-slice";
 
 import useStyles from "../../stylesHook";
 
-const TicketDashboard = () => {
+export const TicketDashboard = () => {
+  const dispatch = useAppDispatch();
   const classes = useStyles();
+
+  const toggleNewTicketDialog = () => {
+    dispatch(uiActions.toggleShowTicketDialog());
+  };
 
   return (
     <>
@@ -14,6 +22,9 @@ const TicketDashboard = () => {
         <Container maxWidth="xs">
           <Typography variant="h3" align="center">
             Welcome, Admin.
+            <IconButton color="inherit" onClick={toggleNewTicketDialog}>
+              <AddCircleOutlineIcon />
+            </IconButton>
           </Typography>
         </Container>
       </div>
@@ -21,5 +32,3 @@ const TicketDashboard = () => {
     </>
   );
 };
-
-export default TicketDashboard;

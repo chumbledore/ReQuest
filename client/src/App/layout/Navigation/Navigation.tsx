@@ -1,7 +1,7 @@
 import { Header } from "./Header/Header";
 import { SideDrawer } from "./SideDrawer/SideDrawer";
 
-const Navigation = () => {
+export const Navigation = () => {
   return (
     <>
       <Header />
@@ -9,5 +9,3 @@ const Navigation = () => {
     </>
   );
 };
-
-export default Navigation;
