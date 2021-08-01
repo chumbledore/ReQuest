@@ -31,7 +31,6 @@ export const TicketCardButtons = ({ ticketId }: Props) => {
 
   const handleTicketDeletion = (id: string | undefined) => {
     dispatch(ticketActions.deleteTicket(id));
-    console.log(id);
   };
 
   return (
