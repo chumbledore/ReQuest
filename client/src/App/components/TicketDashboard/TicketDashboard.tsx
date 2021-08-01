@@ -6,12 +6,14 @@ import { useAppDispatch } from "../../store/hooks";
 import { uiActions } from "../../store/ui-slice";
 
 import useStyles from "../../stylesHook";
+import { ticketActions } from "../../store/ticket-slice";
 
 export const TicketDashboard = () => {
   const dispatch = useAppDispatch();
   const classes = useStyles();
 
   const toggleNewTicketDialog = () => {
+    dispatch(ticketActions.selectTicketForEdit(null));
     dispatch(uiActions.toggleShowTicketDialog());
   };
 

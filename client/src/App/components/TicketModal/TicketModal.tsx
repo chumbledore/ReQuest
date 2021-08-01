@@ -20,29 +20,18 @@ export const TicketModal = () => {
     dispatch(uiActions.toggleShowTicketDialog());
   };
 
-  // const selectedTicket = useAppSelector((state) => state.ticket.selectedTicket);
-
-  // const initialState = selectedTicket ?? {
-  //   id: "",
-  //   location: "",
-  //   machineId: "",
-  //   ticketSubject: "",
-  //   ticketBody: "",
-  // };
-
   const newTicket = useAppSelector((state) => state.ticket.newTicket);
-
-  // const [ticket, setTicket] = useState(initialState);
 
   const handleInputChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = event.target;
-    dispatch(ticketActions.newTicketCreationHandler({ name, value }));
+    dispatch(ticketActions.ticketModalInputHandler({ name, value }));
   };
 
   const handleSubmit = () => {
-    dispatch(ticketActions.addNewTicketToList());
+    dispatch(ticketActions.createOrEditTicket(newTicket));
+    dispatch(uiActions.toggleShowTicketDialog());
   };
 
   return (
@@ -109,12 +98,8 @@ export const TicketModal = () => {
             <Button onClick={() => toggleTicketDialog()} color="inherit">
               Cancel
             </Button>
-            <Button
-              onClick={() => handleSubmit()}
-              color="inherit"
-              type="submit"
-            >
-              Create
+            <Button onClick={handleSubmit} color="inherit" type="submit">
+              Create or Edit
             </Button>
           </DialogActions>
         </Dialog>

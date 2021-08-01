@@ -59,26 +59,18 @@ const DUMMY_DATA: Ticket[] = [
   },
 ];
 
-// const DUMMY_SELECTED_TICKET = {
-//   id: "6",
-//   location: "CKNA",
-//   machineId: 8595,
-//   ticketSubject: "Maintenance",
-//   ticketBody: "AC Unit out",
-//   date: Date.now().toString(),
-// };
-const newTicket = {
+const newTicketTemplate = {
   id: "",
   location: "",
   machineId: 0,
   ticketSubject: "",
   ticketBody: "",
-  date: "",
+  date: Date.now().toString(),
 };
 
 const initialState: ticketState = {
   tickets: DUMMY_DATA,
-  newTicket,
+  newTicket: newTicketTemplate,
   selectedTicket: undefined,
 };
 
@@ -88,18 +80,30 @@ const ticketSlice = createSlice({
   reducers: {
     selectTicketForEdit(state, action) {
       const id: string = action.payload;
-      const foundTicket = state.tickets.find((ticket) => ticket.id === id);
-      state.selectedTicket = foundTicket;
+      state.selectedTicket = state.tickets.find((x) => x.id === id);
+      if (state.selectedTicket !== undefined) {
+        state.newTicket = state.selectedTicket;
+      } else {
+        state.newTicket = newTicketTemplate;
+      }
     },
-    newTicketCreationHandler(state, action) {
+    ticketModalInputHandler(state, action) {
       const { name, value } = action.payload;
       state.newTicket = { ...state.newTicket, [name]: value };
     },
-    addNewTicketToList(state) {
-      const ticketToAdd = state.newTicket;
-      ticketToAdd.id = uuidv4();
-      ticketToAdd.date = Date.now().toString();
-      state.tickets = [...state.tickets, ticketToAdd];
+    createOrEditTicket(state, action) {
+      const ticket = action.payload;
+      if (ticket.id) {
+        state.tickets = [
+          ...state.tickets.filter((x) => x.id !== ticket.id),
+          ticket,
+        ];
+      } else {
+        const ticketToAdd = state.newTicket;
+        ticketToAdd.id = uuidv4();
+        ticketToAdd.date = Date.now().toString();
+        state.tickets = [...state.tickets, ticketToAdd];
+      }
     },
     deleteTicket(state, action) {
       const id = action.payload;
