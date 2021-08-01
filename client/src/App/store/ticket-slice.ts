@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Ticket } from "../viewmodels/ticketResponseVM";
+import { v4 as uuidv4 } from "uuid";
 
 interface ticketState {
   tickets: Ticket[];
-  newTicket: Ticket | undefined;
+  newTicket: Ticket;
   selectedTicket: Ticket | undefined;
 }
 
@@ -66,10 +67,18 @@ const DUMMY_DATA: Ticket[] = [
 //   ticketBody: "AC Unit out",
 //   date: Date.now().toString(),
 // };
+const newTicket = {
+  id: "",
+  location: "",
+  machineId: 0,
+  ticketSubject: "",
+  ticketBody: "",
+  date: "",
+};
 
 const initialState: ticketState = {
   tickets: DUMMY_DATA,
-  newTicket: undefined,
+  newTicket,
   selectedTicket: undefined,
 };
 
@@ -78,9 +87,23 @@ const ticketSlice = createSlice({
   initialState,
   reducers: {
     selectTicketForEdit(state, action) {
-      const id = action.payload;
+      const id: string = action.payload;
       const foundTicket = state.tickets.find((ticket) => ticket.id === id);
       state.selectedTicket = foundTicket;
+    },
+    newTicketCreationHandler(state, action) {
+      const { name, value } = action.payload;
+      state.newTicket = { ...state.newTicket, [name]: value };
+    },
+    addNewTicketToList(state) {
+      const ticketToAdd = state.newTicket;
+      ticketToAdd.id = uuidv4();
+      ticketToAdd.date = Date.now().toString();
+      state.tickets = [...state.tickets, ticketToAdd];
+    },
+    deleteTicket(state, action) {
+      const id = action.payload;
+      state.tickets = state.tickets.filter((ticket) => ticket.id !== id);
     },
   },
 });

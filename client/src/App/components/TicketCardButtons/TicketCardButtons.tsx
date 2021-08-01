@@ -3,7 +3,6 @@ import { withStyles, Theme } from "@material-ui/core/styles";
 import { amber } from "@material-ui/core/colors";
 import useStyles from "../../stylesHook";
 import { useAppDispatch } from "../../store/hooks";
-import { Ticket } from "../../viewmodels/ticketResponseVM";
 import { ticketActions } from "../../store/ticket-slice";
 import { uiActions } from "../../store/ui-slice";
 
@@ -29,10 +28,21 @@ export const TicketCardButtons = ({ ticketId }: Props) => {
     dispatch(ticketActions.selectTicketForEdit(id));
     dispatch(uiActions.toggleShowTicketDialog());
   };
+
+  const handleTicketDeletion = (id: string | undefined) => {
+    dispatch(ticketActions.deleteTicket(id));
+    console.log(id);
+  };
+
   return (
     <>
       <CardActions className={classes.cardActions}>
-        <Button size="small" variant="contained" color="secondary">
+        <Button
+          size="small"
+          variant="contained"
+          color="secondary"
+          onClick={() => handleTicketDeletion(ticketId)}
+        >
           Deny
         </Button>
         <CompromiseButton

@@ -7,7 +7,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { uiActions } from "../../store/ui-slice";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
+import { ticketActions } from "../../store/ticket-slice";
 // import { ticketActions } from "../../store/ticket-slice";
 // import { Ticket } from "../../viewmodels/ticketResponseVM";
 
@@ -19,26 +20,30 @@ export const TicketModal = () => {
     dispatch(uiActions.toggleShowTicketDialog());
   };
 
-  const selectedTicket = useAppSelector((state) => state.ticket.selectedTicket);
+  // const selectedTicket = useAppSelector((state) => state.ticket.selectedTicket);
 
-  const initialState = selectedTicket ?? {
-    id: "",
-    location: "",
-    machineId: "",
-    ticketSubject: "",
-    ticketBody: "",
-  };
+  // const initialState = selectedTicket ?? {
+  //   id: "",
+  //   location: "",
+  //   machineId: "",
+  //   ticketSubject: "",
+  //   ticketBody: "",
+  // };
 
-  const [ticket, setTicket] = useState(initialState);
+  const newTicket = useAppSelector((state) => state.ticket.newTicket);
+
+  // const [ticket, setTicket] = useState(initialState);
 
   const handleInputChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = event.target;
-    setTicket({ ...ticket, [name]: value });
+    dispatch(ticketActions.newTicketCreationHandler({ name, value }));
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    dispatch(ticketActions.addNewTicketToList());
+  };
 
   return (
     <>
@@ -61,7 +66,7 @@ export const TicketModal = () => {
                 name="location"
                 label="Location"
                 type="text"
-                value={ticket.location}
+                value={newTicket.location}
                 onChange={handleInputChange}
                 fullWidth
               />
@@ -71,8 +76,8 @@ export const TicketModal = () => {
                 id="machineId"
                 name="machineId"
                 label="Machine ID"
-                type="text"
-                value={ticket.machineId}
+                type="number"
+                value={newTicket.machineId}
                 onChange={handleInputChange}
                 fullWidth
               />
@@ -83,7 +88,7 @@ export const TicketModal = () => {
                 name="ticketSubject"
                 label="Subject"
                 type="text"
-                value={ticket.ticketSubject}
+                value={newTicket.ticketSubject}
                 onChange={handleInputChange}
                 fullWidth
               />
@@ -94,19 +99,19 @@ export const TicketModal = () => {
                 name="ticketBody"
                 label="Ticket Body"
                 type="text"
-                value={ticket.ticketBody}
+                value={newTicket.ticketBody}
                 onChange={handleInputChange}
                 fullWidth
               />
             </form>
           </DialogContent>
           <DialogActions>
-            <Button onClick={() => toggleTicketDialog()} color="primary">
+            <Button onClick={() => toggleTicketDialog()} color="inherit">
               Cancel
             </Button>
             <Button
-              onClick={() => toggleTicketDialog()}
-              color="primary"
+              onClick={() => handleSubmit()}
+              color="inherit"
               type="submit"
             >
               Create
