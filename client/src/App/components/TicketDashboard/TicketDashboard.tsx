@@ -6,7 +6,7 @@ import { useAppDispatch } from "../../store/hooks";
 import { uiActions } from "../../store/ui-slice";
 
 import useStyles from "../../stylesHook";
-import { ticketActions } from "../../store/ticket-slice";
+import { ticketActions } from "../../store/tickets/ticket-slice";
 
 export const TicketDashboard = () => {
   const dispatch = useAppDispatch();

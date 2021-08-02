@@ -3,7 +3,7 @@ import { withStyles, Theme } from "@material-ui/core/styles";
 import { amber } from "@material-ui/core/colors";
 import useStyles from "../../stylesHook";
 import { useAppDispatch } from "../../store/hooks";
-import { ticketActions } from "../../store/ticket-slice";
+import { ticketActions } from "../../store/tickets/ticket-slice";
 import { uiActions } from "../../store/ui-slice";
 
 const CompromiseButton = withStyles((theme: Theme) => ({

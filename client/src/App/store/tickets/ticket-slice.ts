@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Ticket } from "../viewmodels/ticketResponseVM";
+import { Ticket } from "../../viewmodels/ticketResponseVM";
 import { v4 as uuidv4 } from "uuid";
 
 interface ticketState {
@@ -8,68 +8,68 @@ interface ticketState {
   selectedTicket: Ticket | undefined;
 }
 
-const DUMMY_DATA: Ticket[] = [
-  {
-    id: "1",
-    location: "CKNA",
-    machineId: 99717,
-    ticketSubject: "Maintenance",
-    ticketBody: "Broken Card Reader",
-    date: Date.now().toString(),
-  },
-  {
-    id: "2",
-    location: "Multimatic",
-    machineId: 1,
-    ticketSubject: "Merchandising",
-    ticketBody: "Replace Reese's with Zagnuts",
-    date: Date.now().toString(),
-  },
-  {
-    id: "3",
-    location: "ICP",
-    machineId: 89134,
-    ticketSubject: "Merchandising",
-    ticketBody: "General Merchandising",
-    date: Date.now().toString(),
-  },
-  {
-    id: "4",
-    location: "Lewisburg Printing",
-    machineId: 1,
-    ticketSubject: "Maintenance",
-    ticketBody: "Bill Jam",
-    date: Date.now().toString(),
-  },
-  {
-    id: "5",
-    location: "CKNA DC Front",
-    machineId: 89305,
-    ticketSubject: "Merchandising",
-    ticketBody: "Replace Doritos with Cheez-its",
-    date: Date.now().toString(),
-  },
-  {
-    id: "6",
-    location: "CKNA",
-    machineId: 8595,
-    ticketSubject: "Maintenance",
-    ticketBody: "AC Unit out",
-    date: Date.now().toString(),
-  },
-];
+// const DUMMY_DATA: Ticket[] = [
+//   {
+//     id: "1",
+//     location: "CKNA",
+//     machineId: 99717,
+//     ticketSubject: "Maintenance",
+//     ticketBody: "Broken Card Reader",
+//     date: Date.now().toString(),
+//   },
+//   {
+//     id: "2",
+//     location: "Multimatic",
+//     machineId: 1,
+//     ticketSubject: "Merchandising",
+//     ticketBody: "Replace Reese's with Zagnuts",
+//     date: Date.now().toString(),
+//   },
+//   {
+//     id: "3",
+//     location: "ICP",
+//     machineId: 89134,
+//     ticketSubject: "Merchandising",
+//     ticketBody: "General Merchandising",
+//     date: Date.now().toString(),
+//   },
+//   {
+//     id: "4",
+//     location: "Lewisburg Printing",
+//     machineId: 1,
+//     ticketSubject: "Maintenance",
+//     ticketBody: "Bill Jam",
+//     date: Date.now().toString(),
+//   },
+//   {
+//     id: "5",
+//     location: "CKNA DC Front",
+//     machineId: 89305,
+//     ticketSubject: "Merchandising",
+//     ticketBody: "Replace Doritos with Cheez-its",
+//     date: Date.now().toString(),
+//   },
+//   {
+//     id: "6",
+//     location: "CKNA",
+//     machineId: 8595,
+//     ticketSubject: "Maintenance",
+//     ticketBody: "AC Unit out",
+//     date: Date.now().toString(),
+//   },
+// ];
 
 const newTicketTemplate = {
   id: "",
   location: "",
-  machineId: 0,
+  machineID: 0,
   ticketSubject: "",
   ticketBody: "",
   date: Date.now().toString(),
 };
 
 const initialState: ticketState = {
-  tickets: DUMMY_DATA,
+  tickets: [],
   newTicket: newTicketTemplate,
   selectedTicket: undefined,
 };
@@ -78,6 +78,10 @@ const ticketSlice = createSlice({
   name: "ticket",
   initialState,
   reducers: {
+    getTickets(state, action) {
+      const ticketListFromDatabase = action.payload;
+      state.tickets = ticketListFromDatabase;
+    },
     selectTicketForEdit(state, action) {
       const id: string = action.payload;
       state.selectedTicket = state.tickets.find((x) => x.id === id);

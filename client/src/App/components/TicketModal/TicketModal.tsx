@@ -8,9 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { uiActions } from "../../store/ui-slice";
 import { ChangeEvent } from "react";
-import { ticketActions } from "../../store/ticket-slice";
-// import { ticketActions } from "../../store/ticket-slice";
-// import { Ticket } from "../../viewmodels/ticketResponseVM";
+import { ticketActions } from "../../store/tickets/ticket-slice";
 
 export const TicketModal = () => {
   const open = useAppSelector((state) => state.ui.showTicketModal);
@@ -63,10 +61,10 @@ export const TicketModal = () => {
                 variant="outlined"
                 margin="dense"
                 id="machineId"
-                name="machineId"
+                name="machineID"
                 label="Machine ID"
                 type="number"
-                value={newTicket.machineId}
+                value={newTicket.machineID}
                 onChange={handleInputChange}
                 fullWidth
               />

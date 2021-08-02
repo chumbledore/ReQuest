@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import uiSlice from "./ui-slice";
-import ticketSlice from "./ticket-slice";
+import ticketSlice from "./tickets/ticket-slice";
 
 const store = configureStore({
   reducer: { ui: uiSlice.reducer, ticket: ticketSlice.reducer },

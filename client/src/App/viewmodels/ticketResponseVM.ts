@@ -1,7 +1,7 @@
 export interface Ticket {
   id?: string;
   location?: string;
-  machineId?: number;
+  machineID?: number;
   ticketSubject?: string;
   ticketBody?: string;
   status?: boolean;

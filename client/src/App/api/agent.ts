@@ -1,7 +1,7 @@
 import { Ticket, Response } from "../viewmodels/ticketResponseVM";
 import axios, { AxiosResponse } from "axios";
 
-axios.defaults.baseURL = process.env.REACT_APP_BASEURL;
+axios.defaults.baseURL = "http://localhost:5000/api"; //process.env.REACT_APP_BASEURL;
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
@@ -15,7 +15,7 @@ const requests = {
 };
 
 const Tickets = {
-  list: () => requests.get<Response>("/Tickets"),
+  list: () => requests.get<Response>("Tickets"),
   getTicket: (id: string) => requests.get<Ticket>(`/Tickets/${id}`),
   createNewTicket: (ticket: Ticket) => axios.post<void>("/Tickets", ticket),
   updateTicket: (ticket: Ticket) =>
