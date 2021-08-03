@@ -44,14 +44,10 @@ const ticketSlice = createSlice({
     },
     createOrEditTicket(state, action) {
       const ticket = action.payload;
-      if (ticket.id) {
-        state.tickets = [
-          ...state.tickets.filter((x) => x.id !== ticket.id),
-          ticket,
-        ];
-      } else {
-        state.tickets = [...state.tickets, ticket];
-      }
+      state.tickets = [
+        ...state.tickets.filter((x) => x.id !== ticket.id),
+        ticket,
+      ];
     },
     deleteTicket(state, action) {
       const id = action.payload;

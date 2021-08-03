@@ -28,10 +28,7 @@ export const getTicketsFromDatabase = () => {
 export const createOrEditTicketInDatabase = (ticket: Ticket) => {
   return async (dispatch: Dispatch) => {
     const postRequest = async (ticket: Ticket) => {
-      const ticketToAdd = { ...ticket };
-      ticketToAdd.id = uuidv4();
-      console.log(ticketToAdd);
-      const response = agent.Tickets.createNewTicket(ticketToAdd);
+      const response = agent.Tickets.createNewTicket(ticket);
 
       if (!response) {
         throw new Error("Could not reach server");
@@ -50,8 +47,10 @@ export const createOrEditTicketInDatabase = (ticket: Ticket) => {
       dispatch(ticketActions.createOrEditTicket(ticket));
       return await putRequest(ticket);
     }
-    dispatch(ticketActions.createOrEditTicket(ticket));
-    return await postRequest(ticket);
+    const ticketToAdd = { ...ticket };
+    ticketToAdd.id = uuidv4();
+    dispatch(ticketActions.createOrEditTicket(ticketToAdd));
+    return await postRequest(ticketToAdd);
   };
 };
 
