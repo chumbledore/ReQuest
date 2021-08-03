@@ -5,6 +5,7 @@ import useStyles from "../../stylesHook";
 import { useAppDispatch } from "../../store/hooks";
 import { ticketActions } from "../../store/tickets/ticket-slice";
 import { uiActions } from "../../store/ui-slice";
+import { deleteTicketFromDatabase } from "../../store/tickets/ticket-actions";
 
 const CompromiseButton = withStyles((theme: Theme) => ({
   root: {
@@ -25,12 +26,18 @@ export const TicketCardButtons = ({ ticketId }: Props) => {
   const dispatch = useAppDispatch();
 
   const selectTicket = (id: string | undefined) => {
+    if (id === undefined) {
+      return;
+    }
     dispatch(ticketActions.selectTicketForEdit(id));
     dispatch(uiActions.toggleShowTicketDialog());
   };
 
   const handleTicketDeletion = (id: string | undefined) => {
-    dispatch(ticketActions.deleteTicket(id));
+    if (id === undefined) {
+      return;
+    }
+    dispatch(deleteTicketFromDatabase(id));
   };
 
   return (

@@ -9,18 +9,17 @@ const requests = {
   get: <T>(url: string) => axios.get<T>(url).then(responseBody),
   post: <T>(url: string, body: {}) =>
     axios.post<T>(url, body).then(responseBody),
-  put: <T>(url: string, body: {}) =>
-    axios.post<T>(url, body).then(responseBody),
-  del: <T>(url: string) => axios.delete<T>(url).then(responseBody),
+  put: <T>(url: string, body: {}) => axios.put<T>(url, body).then(responseBody),
+  delete: <T>(url: string) => axios.delete<T>(url).then(responseBody),
 };
 
 const Tickets = {
-  list: () => requests.get<Response>("Tickets"),
+  list: () => requests.get<Response>("/Tickets"),
   getTicket: (id: string) => requests.get<Ticket>(`/Tickets/${id}`),
-  createNewTicket: (ticket: Ticket) => axios.post<void>("/Tickets", ticket),
+  createNewTicket: (ticket: Ticket) => requests.post<void>("/Tickets", ticket),
   updateTicket: (ticket: Ticket) =>
-    axios.put<void>(`/Tickets/${ticket.id}`, ticket),
-  delete: (id: string) => axios.delete<void>(`/Tickets/${id}`),
+    requests.put<void>(`/Tickets/${ticket.id}`, ticket),
+  delete: (id: string) => requests.delete<void>(`/Tickets/${id}`),
 };
 
 const agent = {

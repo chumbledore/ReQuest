@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { uiActions } from "../../store/ui-slice";
 import { ChangeEvent } from "react";
 import { ticketActions } from "../../store/tickets/ticket-slice";
+import { createOrEditTicketInDatabase } from "../../store/tickets/ticket-actions";
 
 export const TicketModal = () => {
   const open = useAppSelector((state) => state.ui.showTicketModal);
@@ -28,7 +29,7 @@ export const TicketModal = () => {
   };
 
   const handleSubmit = () => {
-    dispatch(ticketActions.createOrEditTicket(newTicket));
+    dispatch(createOrEditTicketInDatabase(newTicket));
     dispatch(uiActions.toggleShowTicketDialog());
   };
 
