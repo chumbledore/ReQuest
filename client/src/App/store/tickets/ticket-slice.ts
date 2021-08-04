@@ -44,10 +44,7 @@ const ticketSlice = createSlice({
     },
     createTicketInState(state, action) {
       const ticket = action.payload;
-      state.tickets = [
-        ...state.tickets.filter((x) => x.id !== ticket.id),
-        ticket,
-      ];
+      state.tickets.push(ticket);
     },
     updateTicketInState(state, action) {
       const ticket = action.payload;
