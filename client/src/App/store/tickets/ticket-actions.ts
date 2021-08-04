@@ -39,17 +39,18 @@ export const createOrEditTicketInDatabase = (ticket: Ticket) => {
       const response = agent.Tickets.updateTicket(ticket);
 
       if (!response) {
-        throw new Error("Could not reach server, put");
+        throw new Error("Could not reach server");
       }
     };
 
     if (ticket.id) {
-      dispatch(ticketActions.createOrEditTicket(ticket));
+      dispatch(ticketActions.updateTicketInState(ticket));
       return await putRequest(ticket);
     }
+
     const ticketToAdd = { ...ticket };
     ticketToAdd.id = uuidv4();
-    dispatch(ticketActions.createOrEditTicket(ticketToAdd));
+    dispatch(ticketActions.createTicketInState(ticketToAdd));
     return await postRequest(ticketToAdd);
   };
 };
@@ -60,8 +61,9 @@ export const deleteTicketFromDatabase = (id: string) => {
       await agent.Tickets.delete(id);
     };
     try {
-      dispatch(ticketActions.deleteTicket(id));
-      return await deleteRequest(id);
+      await deleteRequest(id);
+
+      return dispatch(ticketActions.deleteTicket(id));
     } catch (error) {
       throw new Error(error);
     }
