@@ -3,12 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Database;
+using Microsoft.AspNetCore.Identity;
 
 namespace Models
 {
     public  class Seed
     {
-        public static async Task SeedData(DataContext context){
+        public static async Task SeedData(DataContext context, UserManager<AppUser> userManager){
+
+            if(!userManager.Users.Any())
+            {
+                var users = new List<AppUser>
+                {
+                    new AppUser{UserName = "test", Email="test@test.com"},
+                    new AppUser{UserName = "bob", Email="bob@test.com"},
+                    new AppUser{UserName = "seed", Email="seed@test.com"},
+                };
+
+                foreach (var user in users)
+                {
+                    await userManager.CreateAsync(user, "passw0rd");
+                }
+            }
 
             if(context.Tickets.Any()) return;
 

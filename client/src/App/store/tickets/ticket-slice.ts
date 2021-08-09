@@ -47,11 +47,11 @@ const ticketSlice = createSlice({
       state.tickets.push(ticket);
     },
     updateTicketInState(state, action) {
-      const ticket = action.payload;
+      const updatedTicket = action.payload;
       const returnPosition = state.tickets.findIndex(
-        (tickets) => tickets.id === ticket.id
+        (tickets) => tickets.id === updatedTicket.id
       );
-      state.tickets[returnPosition] = ticket;
+      state.tickets[returnPosition] = updatedTicket;
     },
     deleteTicket(state, action) {
       const id = action.payload;
