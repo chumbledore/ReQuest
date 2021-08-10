@@ -3,7 +3,9 @@ import { TicketDashboard } from "../components/TicketDashboard";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { useAppSelector } from "../store/hooks";
-import {Navigation} from "./Navigation";
+import { Navigation } from "./Navigation";
+import { Route } from "react-router-dom";
+import WelcomePage from "./HomePage/WelcomePage";
 
 function App() {
   const darkMode = useAppSelector((state) => state.ui.useDarkTheme);
@@ -19,7 +21,8 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Navigation />
-        <TicketDashboard />
+        <Route exact path="/" component={WelcomePage} />
+        <Route exact path="/tickets" component={TicketDashboard} />
       </ThemeProvider>
     </>
   );
