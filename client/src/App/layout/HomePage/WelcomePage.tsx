@@ -1,22 +1,25 @@
 import useStyles from "../../stylesHook";
 import clsx from "clsx";
 import { useAppSelector } from "../../store/hooks";
-import { Container, Typography } from "@material-ui/core";
+import { Fade, Typography } from "@material-ui/core";
 
-export default function WelcomePage() {
+export function WelcomePage() {
   const classes = useStyles();
   const open = useAppSelector((state) => state.ui.sideDrawerOpen);
+  const fadeIn = true;
   return (
-    <Container className={classes.root} maxWidth="xl">
-      <Container
+    <div>
+      <div
         className={clsx(classes.content, {
           [classes.contentShift]: open,
         })}
       >
-        <Typography variant="h3" align="center">
-          Welcome to Request
-        </Typography>
-      </Container>
-    </Container>
+        <Fade in={fadeIn} timeout={{ enter: 1500 }}>
+          <Typography variant="h3" align="center">
+            Welcome to Request
+          </Typography>
+        </Fade>
+      </div>
+    </div>
   );
 }

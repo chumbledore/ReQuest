@@ -5,7 +5,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { useAppSelector } from "../store/hooks";
 import { Navigation } from "./Navigation";
 import { Route } from "react-router-dom";
-import WelcomePage from "./HomePage/WelcomePage";
+import { WelcomePage } from "./HomePage/WelcomePage";
 
 function App() {
   const darkMode = useAppSelector((state) => state.ui.useDarkTheme);

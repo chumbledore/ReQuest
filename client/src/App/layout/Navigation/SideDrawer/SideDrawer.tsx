@@ -11,15 +11,21 @@ import ListItemText from "@material-ui/core/ListItemText";
 import useStyles from "../../../stylesHook";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { uiActions } from "../../../store/ui-slice";
+import { NavLink, Route } from "react-router-dom";
+import Routes from "../../../routes/Routes";
 
-export const SideDrawer = () => {
+export const SideDrawer = (props: any) => {
   const dispatch = useAppDispatch();
   const theme = useTheme();
   const classes = useStyles();
   const open = useAppSelector((state) => state.ui.sideDrawerOpen);
 
-  const openSideDrawerHandler = () => {
+  const toggleSideDrawerHandler = () => {
     dispatch(uiActions.toggleSideDrawer());
+  };
+
+  const activeRoute = (routeName: any) => {
+    return props.location.pathname === routeName ? true : false;
   };
 
   return (
@@ -33,7 +39,7 @@ export const SideDrawer = () => {
       }}
     >
       <div className={classes.drawerHeader}>
-        <IconButton onClick={openSideDrawerHandler}>
+        <IconButton onClick={toggleSideDrawerHandler}>
           {theme.direction === "ltr" ? (
             <ChevronLeftIcon />
           ) : (
@@ -43,10 +49,20 @@ export const SideDrawer = () => {
       </div>
       <Divider />
       <List>
-        <ListItem button>
-          <ListItemIcon></ListItemIcon>
-          <ListItemText>Dashboard</ListItemText>
-        </ListItem>
+        {Routes.map((prop, key) => {
+          return (
+            <NavLink
+              to={prop.path}
+              style={{ textDecoration: "none" }}
+              key={key}
+            >
+              <ListItem color="inherit" button>
+                <ListItemIcon></ListItemIcon>
+                <ListItemText color="inherit">{prop.sideBarName}</ListItemText>
+              </ListItem>
+            </NavLink>
+          );
+        })}
       </List>
     </Drawer>
   );

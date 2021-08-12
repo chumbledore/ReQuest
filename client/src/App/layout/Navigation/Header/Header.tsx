@@ -1,12 +1,19 @@
 import useStyles from "../../../stylesHook";
 import clsx from "clsx";
-import { AppBar, Toolbar, IconButton, Typography } from "@material-ui/core";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Link,
+} from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
 import Brightness1Icon from "@material-ui/icons/Brightness1";
 
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { uiActions } from "../../../store/ui-slice";
+import { Link as RouterLink } from "react-router-dom";
 
 export const Header = () => {
   const dispatch = useAppDispatch();
@@ -41,7 +48,9 @@ export const Header = () => {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" className={classes.title}>
-          Ticket Dashboard
+          <Link color="inherit" component={RouterLink} to="/tickets">
+            Ticket Dashboard
+          </Link>
         </Typography>
         <IconButton edge="end" color="inherit" onClick={themeToggleHandler}>
           {lightDarkThemeIcon ? <Brightness7Icon /> : <Brightness1Icon />}
