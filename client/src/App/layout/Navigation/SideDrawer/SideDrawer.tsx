@@ -11,8 +11,9 @@ import ListItemText from "@material-ui/core/ListItemText";
 import useStyles from "../../../stylesHook";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { uiActions } from "../../../store/ui-slice";
-import { NavLink, Route } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Routes from "../../../routes/Routes";
+import { Box } from "@material-ui/core";
 
 export const SideDrawer = (props: any) => {
   const dispatch = useAppDispatch();
@@ -22,10 +23,6 @@ export const SideDrawer = (props: any) => {
 
   const toggleSideDrawerHandler = () => {
     dispatch(uiActions.toggleSideDrawer());
-  };
-
-  const activeRoute = (routeName: any) => {
-    return props.location.pathname === routeName ? true : false;
   };
 
   return (
@@ -51,16 +48,19 @@ export const SideDrawer = (props: any) => {
       <List>
         {Routes.map((prop, key) => {
           return (
-            <NavLink
-              to={prop.path}
-              style={{ textDecoration: "none" }}
-              key={key}
-            >
-              <ListItem color="inherit" button>
-                <ListItemIcon></ListItemIcon>
+            <Box borderTop={1} borderBottom={1}>
+              <ListItem
+                color="inherit"
+                button
+                component={NavLink}
+                to={prop.path}
+                exact
+                key={key}
+              >
+                <ListItemIcon>{prop.routeIcon}</ListItemIcon>
                 <ListItemText color="inherit">{prop.sideBarName}</ListItemText>
               </ListItem>
-            </NavLink>
+            </Box>
           );
         })}
       </List>
