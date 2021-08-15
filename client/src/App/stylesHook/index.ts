@@ -80,6 +80,9 @@ const useStyles = makeStyles((theme: Theme) =>
       }),
       marginLeft: 0,
     },
+    welcome: {
+      marginLeft: 200,
+    }
   })
 );
 

@@ -8,7 +8,7 @@ export function WelcomePage() {
   const open = useAppSelector((state) => state.ui.sideDrawerOpen);
   const fadeIn = true;
   return (
-    <div>
+    <div className={classes.welcome}>
       <div
         className={clsx(classes.content, {
           [classes.contentShift]: open,

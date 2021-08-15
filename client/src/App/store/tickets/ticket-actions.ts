@@ -12,7 +12,11 @@ export const getTicketsFromDatabase = () => {
       if (!response.success) {
         throw new Error("Could not fetch from server...");
       }
-      console.log(response.data);
+      const tickets = response.data;
+      tickets.forEach(ticket => {
+        if (ticket.date === undefined) return;
+        ticket.date = ticket.date.split('T')[0];
+      })
       return response.data;
     };
 
