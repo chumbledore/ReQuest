@@ -45,7 +45,7 @@ export const SideDrawer = (props: any) => {
         </IconButton>
       </div>
       <Divider />
-      <List>
+      <List disablePadding>
         {Routes.map((prop, key) => {
           return (
             <Box borderTop={1} borderBottom={1}>
