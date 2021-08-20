@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using App.Tickets;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 
@@ -16,6 +17,7 @@ namespace API.Controllers
             _mediator = mediator;
         }
 
+        
         [HttpGet]
         public async Task<ActionResult<TicketResponse<List<Ticket>>>> GetTickets()
         {
@@ -25,7 +27,8 @@ namespace API.Controllers
 
             return Ok(response);
         }
-
+        
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<TicketResponse<Ticket>>> GetTicket(Guid id)
         {
