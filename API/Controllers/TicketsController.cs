@@ -9,6 +9,7 @@ using Models;
 
 namespace API.Controllers
 {
+    [AllowAnonymous]
     public class TicketsController : BaseAPIController
     {
         private readonly IMediator _mediator;

@@ -6,6 +6,7 @@ import {
   IconButton,
   Typography,
   Link,
+  Box,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
@@ -52,6 +53,20 @@ export const Header = () => {
             Ticket Dashboard
           </Link>
         </Typography>
+        <Box border={1} borderRadius={16} className={classes.headerBox}>
+          <Typography variant="h5" className={classes.title}>
+            <Link color="inherit" component={RouterLink} to="/login">
+              Login
+            </Link>
+          </Typography>
+        </Box>
+        <Box border={1} borderRadius={16} className={classes.headerBox}>
+          <Typography variant="h5" className={classes.title}>
+            <Link color="inherit" component={RouterLink} to="/register">
+              Register
+            </Link>
+          </Typography>
+        </Box>
         <IconButton edge="end" color="inherit" onClick={themeToggleHandler}>
           {lightDarkThemeIcon ? <Brightness7Icon /> : <Brightness1Icon />}
         </IconButton>

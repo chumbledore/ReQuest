@@ -6,6 +6,8 @@ import { useAppSelector } from "../store/hooks";
 import { Navigation } from "./Navigation";
 import { Route } from "react-router-dom";
 import { WelcomePage } from "./HomePage/WelcomePage";
+import { LoginForm } from "../components/Users/LoginForm";
+import { RegisterForm } from "../components/Users/RegisterForm";
 
 function App() {
   const darkMode = useAppSelector((state) => state.ui.useDarkTheme);
@@ -23,6 +25,8 @@ function App() {
         <Navigation />
         <Route exact path="/" component={WelcomePage} />
         <Route exact path="/tickets" component={TicketDashboard} />
+        <Route exact path="/login" component={LoginForm} />
+        <Route exact path="/register" component={RegisterForm} />
       </ThemeProvider>
     </>
   );

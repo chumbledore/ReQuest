@@ -82,7 +82,11 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     welcome: {
       marginLeft: 200,
-    }
+    },
+    headerBox: {
+      padding: theme.spacing(1, 4),
+      marginRight: theme.spacing(1),
+    },
   })
 );
 
