@@ -1,5 +1,6 @@
 import { Ticket, Response } from "../viewmodels/ticketResponseVM";
 import axios, { AxiosResponse } from "axios";
+import { User, UserForm } from "../viewmodels/userVM";
 
 axios.defaults.baseURL = "http://localhost:5000/api"; //process.env.REACT_APP_BASEURL;
 
@@ -22,8 +23,15 @@ const Tickets = {
   delete: (id: string) => requests.delete<void>(`/Tickets/${id}`),
 };
 
+const Account = {
+  current: () => requests.get<User>("/account"),
+  login: (user: UserForm) => requests.post<User>("/account/login", user),
+  register: (user: UserForm) => requests.post<User>("/account/register", user),
+};
+
 const agent = {
   Tickets,
+  Account,
 };
 
 export default agent;
