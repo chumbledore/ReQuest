@@ -60,13 +60,6 @@ export const Header = () => {
             </Link>
           </Typography>
         </Box>
-        <Box border={1} borderRadius={16} className={classes.headerBox}>
-          <Typography variant="h5" className={classes.title}>
-            <Link color="inherit" component={RouterLink} to="/register">
-              Register
-            </Link>
-          </Typography>
-        </Box>
         <IconButton edge="end" color="inherit" onClick={themeToggleHandler}>
           {lightDarkThemeIcon ? <Brightness7Icon /> : <Brightness1Icon />}
         </IconButton>
