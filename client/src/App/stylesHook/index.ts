@@ -10,6 +10,16 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       flexGrow: 1,
     },
+    tabsRoot: {
+      backgroundColor: theme.palette.background.paper,
+      width: theme.spacing(180),
+      flexGrow: 1,
+      marginLeft: "auto",
+      marginRight: "auto",
+    },
+    tabPanel: {
+      alignItems: "center",
+    },
     appBar: {
       transition: theme.transitions.create(["margin", "width"], {
         easing: theme.transitions.easing.sharp,

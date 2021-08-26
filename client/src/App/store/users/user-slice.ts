@@ -1,21 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { User } from '../../viewmodels/userVM';
+import { createSlice } from "@reduxjs/toolkit";
+import { User } from "../../viewmodels/userVM";
 
 interface userState {
-    user: User | null
+  user: User | null;
+  isLoggedIn: boolean;
 }
 
 const initialState: userState = {
-    user: null,
-}
+  user: null,
+  isLoggedIn: false,
+};
 
 const userSlice = createSlice({
-    name: "user",
-    initialState,
-    reducers:{
-        
-    }
-})
+  name: "user",
+  initialState,
+  reducers: {},
+});
 
 export const userActions = userSlice.actions;
 

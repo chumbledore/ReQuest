@@ -21,6 +21,7 @@ export const Header = () => {
   const classes = useStyles();
   const lightDarkThemeIcon = useAppSelector((state) => state.ui.useDarkTheme);
   const open = useAppSelector((state) => state.ui.sideDrawerOpen);
+  const isLoggedIn = useAppSelector((state) => state.user.isLoggedIn);
 
   const themeToggleHandler = () => {
     dispatch(uiActions.toggleTheme());
@@ -53,13 +54,15 @@ export const Header = () => {
             Ticket Dashboard
           </Link>
         </Typography>
-        <Box border={1} borderRadius={16} className={classes.headerBox}>
-          <Typography variant="h5" className={classes.title}>
-            <Link color="inherit" component={RouterLink} to="/login">
-              Login
-            </Link>
-          </Typography>
-        </Box>
+        {isLoggedIn ? null : (
+          <Box border={1} borderRadius={16} className={classes.headerBox}>
+            <Typography variant="h5" className={classes.title}>
+              <Link color="inherit" component={RouterLink} to="/account">
+                Login or Register
+              </Link>
+            </Typography>
+          </Box>
+        )}
         <IconButton edge="end" color="inherit" onClick={themeToggleHandler}>
           {lightDarkThemeIcon ? <Brightness7Icon /> : <Brightness1Icon />}
         </IconButton>
