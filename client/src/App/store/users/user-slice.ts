@@ -26,6 +26,9 @@ const userSlice = createSlice({
       const { name, value } = action.payload;
       state.user = { ...state.user, [name]: value };
     },
+    setIsLoggedIn(state) {
+      state.isLoggedIn = !state.isLoggedIn;
+    },
   },
 });
 

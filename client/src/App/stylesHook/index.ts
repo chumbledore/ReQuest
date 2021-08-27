@@ -23,6 +23,12 @@ const useStyles = makeStyles((theme: Theme) =>
     tabAppBar: {
       color: "#212121",
     },
+    tabTextField: {
+      marginBottom: theme.spacing(2),
+    },
+    tabButton: {
+      margin: theme.spacing(0, 28, 0, 28),
+    },
     appBar: {
       transition: theme.transitions.create(["margin", "width"], {
         easing: theme.transitions.easing.sharp,
