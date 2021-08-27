@@ -70,37 +70,39 @@ export function FullWidthTabs() {
   };
 
   return (
-    <div className={classes.tabsRoot}>
+    <>
       <Slide direction="down" in={checked} mountOnEnter unmountOnExit>
-        <div className={classes.tabsContainer}>
-          <AppBar position="static" color="inherit">
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              indicatorColor="secondary"
-              textColor="inherit"
-              variant="fullWidth"
-              aria-label="full width tabs example"
-              centered
+        <div className={classes.tabsRoot}>
+          <div className={classes.tabsContainer}>
+            <AppBar position="static" color="inherit">
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                indicatorColor="secondary"
+                textColor="inherit"
+                variant="fullWidth"
+                aria-label="full width tabs example"
+                centered
+              >
+                <Tab label="Sign In" {...a11yProps(0)} />
+                <Tab label="Sign Up" {...a11yProps(1)} />
+              </Tabs>
+            </AppBar>
+            <SwipeableViews
+              axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+              index={value}
+              onChangeIndex={handleChangeIndex}
             >
-              <Tab label="Sign In" {...a11yProps(0)} />
-              <Tab label="Sign Up" {...a11yProps(1)} />
-            </Tabs>
-          </AppBar>
-          <SwipeableViews
-            axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-            index={value}
-            onChangeIndex={handleChangeIndex}
-          >
-            <TabPanel value={value} index={0} dir={theme.direction}>
-              <LoginForm />
-            </TabPanel>
-            <TabPanel value={value} index={1} dir={theme.direction}>
-              <RegisterForm />
-            </TabPanel>
-          </SwipeableViews>
+              <TabPanel value={value} index={0} dir={theme.direction}>
+                <LoginForm />
+              </TabPanel>
+              <TabPanel value={value} index={1} dir={theme.direction}>
+                <RegisterForm />
+              </TabPanel>
+            </SwipeableViews>
+          </div>
         </div>
       </Slide>
-    </div>
+    </>
   );
 }
