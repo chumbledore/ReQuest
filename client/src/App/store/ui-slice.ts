@@ -4,12 +4,14 @@ interface uiState {
   useDarkTheme: boolean;
   sideDrawerOpen: boolean;
   showTicketModal: boolean;
+  slideInTab: boolean;
 }
 
 const initialState: uiState = {
   useDarkTheme: true,
   sideDrawerOpen: false,
   showTicketModal: false,
+  slideInTab: false,
 };
 
 const uiSlice = createSlice({
@@ -24,6 +26,9 @@ const uiSlice = createSlice({
     },
     toggleShowTicketDialog(state) {
       state.showTicketModal = !state.showTicketModal;
+    },
+    toggleTabSlide(state) {
+      state.slideInTab = !state.slideInTab;
     },
   },
 });
