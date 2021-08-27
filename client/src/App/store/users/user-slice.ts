@@ -1,20 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { User } from "../../viewmodels/userVM";
+import { User, UserForm } from "../../viewmodels/userVM";
+
+const UserTemplate = {
+  email: "",
+  password: "",
+};
 
 interface userState {
-  user: User | null;
+  currentUser: User | null;
+  user: UserForm;
   isLoggedIn: boolean;
 }
 
 const initialState: userState = {
-  user: null,
+  currentUser: null,
+  user: UserTemplate,
   isLoggedIn: false,
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    userFormInputHandler(state, action) {
+      const { name, value } = action.payload;
+      state.user = { ...state.user, [name]: value };
+    },
+  },
 });
 
 export const userActions = userSlice.actions;

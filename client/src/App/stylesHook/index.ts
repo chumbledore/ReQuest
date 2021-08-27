@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     tabsRoot: {
       backgroundColor: theme.palette.background.paper,
-      width: theme.spacing(180),
+      width: theme.spacing(120),
       flexGrow: 1,
       marginLeft: "auto",
       marginRight: "auto",
@@ -99,6 +99,9 @@ const useStyles = makeStyles((theme: Theme) =>
     headerBox: {
       padding: theme.spacing(1, 4),
       marginRight: theme.spacing(1),
+    },
+    formContainer: {
+      margin: theme.spacing(0, 24, 0, 24),
     },
   })
 );

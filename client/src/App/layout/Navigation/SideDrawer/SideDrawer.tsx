@@ -48,14 +48,13 @@ export const SideDrawer = (props: any) => {
       <List disablePadding>
         {Routes.map((prop, key) => {
           return (
-            <Box borderTop={1} borderBottom={1}>
+            <Box borderTop={1} borderBottom={1} key={key}>
               <ListItem
                 color="inherit"
                 button
                 component={NavLink}
                 to={prop.path}
                 exact
-                key={key}
               >
                 <ListItemIcon>{prop.routeIcon}</ListItemIcon>
                 <ListItemText color="inherit">{prop.sideBarName}</ListItemText>

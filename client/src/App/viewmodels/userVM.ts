@@ -7,4 +7,7 @@ export interface User {
 export interface UserForm {
   email: string;
   password: string;
+  region?: string;
+  firstName?: string;
+  lastName?: string;
 }
