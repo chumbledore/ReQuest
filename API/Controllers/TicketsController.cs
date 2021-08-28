@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using App.Tickets;
 using MediatR;
@@ -9,7 +10,7 @@ using Models;
 
 namespace API.Controllers
 {
-    [AllowAnonymous]
+    
     public class TicketsController : BaseAPIController
     {
         private readonly IMediator _mediator;
@@ -43,6 +44,7 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateNewTicket(Ticket ticket)
         {
+            ticket.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             return Ok(await Mediator.Send(new Create.Command {Ticket = ticket}));
         }
 
@@ -57,6 +59,12 @@ namespace API.Controllers
         public async Task<IActionResult> DeleteTicket(Guid id)
         {
             return Ok(await Mediator.Send(new Delete.Command{Id = id}));
+        }
+        [Authorize]
+        [HttpGet("user/{id}")]
+        public async Task<IActionResult> GetTicketsOfUser(string id)
+        {
+            return Ok(await Mediator.Send(new GetUsersTickets.Query{Id = id}));
         }
     }
 }
