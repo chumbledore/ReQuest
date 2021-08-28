@@ -9,13 +9,13 @@ export const LoginForm = () => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
 
-  const user = useAppSelector((state) => state.user.user);
+  const user = useAppSelector((state) => state.user.loginUser);
 
   const handleInputChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = event.target;
-    dispatch(userActions.userFormInputHandler({ name, value }));
+    dispatch(userActions.registerFormInputHandler({ name, value }));
   };
 
   const handleSubmit = (e: React.SyntheticEvent) => {

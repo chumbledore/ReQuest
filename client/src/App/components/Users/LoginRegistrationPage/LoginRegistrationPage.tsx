@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SwipeableViews from "react-swipeable-views";
 import { useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -47,7 +47,7 @@ export function FullWidthTabs() {
   const theme = useTheme();
   const checked = useAppSelector((state) => state.ui.slideInTab);
   const dispatch = useAppDispatch();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState<number>(0);
 
   useEffect(() => {
     dispatch(uiActions.toggleTabSlide());
@@ -58,10 +58,12 @@ export function FullWidthTabs() {
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
+    console.log(value);
   };
 
   const handleChangeIndex = (index: number) => {
     setValue(index);
+    console.log(value);
   };
 
   return (
@@ -79,8 +81,8 @@ export function FullWidthTabs() {
                 aria-label="full width tabs example"
                 centered
               >
-                <Tab label="Sign In" {...a11yProps(0)} />
-                <Tab label="Sign Up" {...a11yProps(1)} />
+                <Tab label="Sign In" value={1} {...a11yProps(0)} />
+                <Tab label="Sign Up" value={0} {...a11yProps(1)} />
               </Tabs>
             </AppBar>
             <SwipeableViews
@@ -88,10 +90,10 @@ export function FullWidthTabs() {
               index={value}
               onChangeIndex={handleChangeIndex}
             >
-              <TabPanel value={value} index={0} dir={theme.direction}>
+              <TabPanel value={1} index={1} dir={theme.direction}>
                 <LoginForm />
               </TabPanel>
-              <TabPanel value={value} index={1} dir={theme.direction}>
+              <TabPanel value={0} index={0} dir={theme.direction}>
                 <RegisterForm />
               </TabPanel>
             </SwipeableViews>

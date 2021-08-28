@@ -8,13 +8,15 @@ const UserTemplate = {
 
 interface userState {
   currentUser: User | null;
-  user: UserForm;
+  loginUser: UserForm;
+  registerUser: UserForm;
   isLoggedIn: boolean;
 }
 
 const initialState: userState = {
   currentUser: null,
-  user: UserTemplate,
+  loginUser: UserTemplate,
+  registerUser: UserTemplate,
   isLoggedIn: false,
 };
 
@@ -22,9 +24,13 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    userFormInputHandler(state, action) {
+    loginFormInputHandler(state, action) {
       const { name, value } = action.payload;
-      state.user = { ...state.user, [name]: value };
+      state.loginUser = { ...state.loginUser, [name]: value };
+    },
+    registerFormInputHandler(state, action) {
+      const { name, value } = action.payload;
+      state.registerUser = { ...state.loginUser, [name]: value };
     },
     setIsLoggedIn(state) {
       state.isLoggedIn = !state.isLoggedIn;
