@@ -1,9 +1,11 @@
 import { Box, Button, TextField } from "@material-ui/core";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { login } from "../../../store/users/user-actions";
 import { userActions } from "../../../store/users/user-slice";
 import useStyles from "../../../stylesHook";
+import { UserForm } from "../../../viewmodels/userVM";
+import { LoginFormValidator } from "./LoginFormValidator";
 
 export const LoginForm = () => {
   const classes = useStyles();
@@ -11,16 +13,25 @@ export const LoginForm = () => {
 
   const user = useAppSelector((state) => state.user.loginUser);
 
+  const [formErrors, setFormErrors] = useState<UserForm>();
+
   const handleInputChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = event.target;
-    dispatch(userActions.registerFormInputHandler({ name, value }));
+    dispatch(userActions.loginFormInputHandler({ name, value }));
   };
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    dispatch(login(user));
+    const temp = LoginFormValidator(user);
+    const isValidated = Object.values(temp).every((x) => x === "");
+
+    if (isValidated) dispatch(login(user));
+
+    setFormErrors({
+      ...temp,
+    });
   };
 
   return (
@@ -38,8 +49,11 @@ export const LoginForm = () => {
               name="email"
               value={user.email}
               fullWidth
+              autoComplete="off"
+              required
               onChange={handleInputChange}
               className={classes.tabTextField}
+              {...(formErrors && { error: true, helperText: formErrors.email })}
             />
             <TextField
               label="Password"
@@ -48,8 +62,14 @@ export const LoginForm = () => {
               name="password"
               value={user.password}
               fullWidth
+              autoComplete="off"
+              required
               onChange={handleInputChange}
               className={classes.tabTextField}
+              {...(formErrors && {
+                error: true,
+                helperText: formErrors.password,
+              })}
             />
             <Button
               variant="outlined"

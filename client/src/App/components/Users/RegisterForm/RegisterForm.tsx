@@ -15,7 +15,7 @@ export const RegisterForm = () => {
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = event.target;
-    dispatch(userActions.loginFormInputHandler({ name, value }));
+    dispatch(userActions.registerFormInputHandler({ name, value }));
   };
 
   const handleSubmit = (e: React.SyntheticEvent) => {
@@ -31,6 +31,36 @@ export const RegisterForm = () => {
           onSubmit={(e) => handleSubmit(e)}
         >
           <Box>
+            <TextField
+              label="First Name"
+              autoFocus
+              variant="outlined"
+              name="firstName"
+              value={user.firstName}
+              fullWidth
+              onChange={handleInputChange}
+              className={classes.tabTextField}
+            />
+            <TextField
+              label="Last Name"
+              autoFocus
+              variant="outlined"
+              name="lastName"
+              value={user.lastName}
+              fullWidth
+              onChange={handleInputChange}
+              className={classes.tabTextField}
+            />
+            <TextField
+              label="Region"
+              autoFocus
+              variant="outlined"
+              name="region"
+              value={user.region}
+              fullWidth
+              onChange={handleInputChange}
+              className={classes.tabTextField}
+            />
             <TextField
               label="Email"
               autoFocus

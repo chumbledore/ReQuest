@@ -7,6 +7,7 @@ import { Navigation } from "./Navigation";
 import { Route } from "react-router-dom";
 import { WelcomePage } from "./HomePage/WelcomePage";
 import { FullWidthTabs as LoginRegistrationPage } from "../components/Users/LoginRegistrationPage";
+import { ErrorModal } from "../components/ErrorModal";
 
 function App() {
   const darkMode = useAppSelector((state) => state.ui.useDarkTheme);
@@ -22,6 +23,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Navigation />
+        <ErrorModal />
         <Route exact path="/" component={WelcomePage} />
         <Route exact path="/tickets" component={TicketDashboard} />
         <Route exact path="/account" component={LoginRegistrationPage} />
