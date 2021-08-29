@@ -11,6 +11,7 @@ interface userState {
   loginUser: UserForm;
   registerUser: UserForm;
   isLoggedIn: boolean;
+  formErrors: object;
 }
 
 const initialState: userState = {
@@ -18,6 +19,7 @@ const initialState: userState = {
   loginUser: UserTemplate,
   registerUser: UserTemplate,
   isLoggedIn: false,
+  formErrors: {},
 };
 
 const userSlice = createSlice({
@@ -35,6 +37,9 @@ const userSlice = createSlice({
     setIsLoggedIn(state) {
       state.isLoggedIn = !state.isLoggedIn;
     },
+    setFormErrors(state, action) {
+      
+    }
   },
 });
 

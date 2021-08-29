@@ -8,7 +8,7 @@ namespace Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Region { get; set; }
-        // [JsonIgnore]
+        [JsonIgnore]
         public override string PasswordHash 
         {
             get{ return base.PasswordHash; }

@@ -14,6 +14,7 @@ export const login = (creds: UserForm) => {
       }
       return user;
     };
+
     const user = await loginRequest(creds);
 
     console.log(user);
