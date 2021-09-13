@@ -1,7 +1,7 @@
 import { Box, Button, TextField } from "@material-ui/core";
 import { ChangeEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { login } from "../../../store/users/user-actions";
+import { register } from "../../../store/users/user-actions";
 import { userActions } from "../../../store/users/user-slice";
 import useStyles from "../../../stylesHook";
 
@@ -20,7 +20,8 @@ export const RegisterForm = () => {
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    dispatch(login(user));
+    if(user.password !== user.confirmPassword) return;
+    dispatch(register(user));
   };
 
   return (
@@ -52,6 +53,16 @@ export const RegisterForm = () => {
               className={classes.tabTextField}
             />
             <TextField
+                label="User Name"
+                autoFocus
+                variant="outlined"
+                name="userName"
+                value={user.userName}
+                fullWidth
+                onChange={handleInputChange}
+                className={classes.tabTextField}
+            />
+            <TextField
               label="Region"
               autoFocus
               variant="outlined"
@@ -77,6 +88,16 @@ export const RegisterForm = () => {
               type="password"
               name="password"
               value={user.password}
+              fullWidth
+              onChange={handleInputChange}
+              className={classes.tabTextField}
+            />
+            <TextField
+              label="Confirm Password"
+              variant="outlined"
+              type="password"
+              name="confirmPassword"
+              value={user.confirmPassword}
               fullWidth
               onChange={handleInputChange}
               className={classes.tabTextField}
