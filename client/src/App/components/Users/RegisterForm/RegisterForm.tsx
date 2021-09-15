@@ -10,6 +10,7 @@ export const RegisterForm = () => {
   const dispatch = useAppDispatch();
 
   const user = useAppSelector((state) => state.user.registerUser);
+  const formErrors = useAppSelector((state) => state.user.formErrors);
 
   const handleInputChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -41,6 +42,7 @@ export const RegisterForm = () => {
               fullWidth
               onChange={handleInputChange}
               className={classes.tabTextField}
+              {...(formErrors && { error: true, helperText: formErrors.firstName })}
             />
             <TextField
               label="Last Name"
@@ -51,6 +53,7 @@ export const RegisterForm = () => {
               fullWidth
               onChange={handleInputChange}
               className={classes.tabTextField}
+              {...(formErrors && { error: true, helperText: formErrors.lastName })}
             />
             <TextField
                 label="User Name"
@@ -61,6 +64,7 @@ export const RegisterForm = () => {
                 fullWidth
                 onChange={handleInputChange}
                 className={classes.tabTextField}
+                {...(formErrors && { error: true, helperText: formErrors.userName })}
             />
             <TextField
               label="Region"
@@ -71,6 +75,7 @@ export const RegisterForm = () => {
               fullWidth
               onChange={handleInputChange}
               className={classes.tabTextField}
+              {...(formErrors && { error: true, helperText: formErrors.region })}
             />
             <TextField
               label="Email"
@@ -81,6 +86,7 @@ export const RegisterForm = () => {
               fullWidth
               onChange={handleInputChange}
               className={classes.tabTextField}
+              {...(formErrors && { error: true, helperText: formErrors.email })}
             />
             <TextField
               label="Password"
@@ -91,6 +97,7 @@ export const RegisterForm = () => {
               fullWidth
               onChange={handleInputChange}
               className={classes.tabTextField}
+              {...(formErrors && { error: true, helperText: formErrors.password })}
             />
             <TextField
               label="Confirm Password"

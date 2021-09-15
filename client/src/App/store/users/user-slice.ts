@@ -21,7 +21,7 @@ interface userState {
   loginUser: UserForm;
   registerUser: UserForm;
   isLoggedIn: boolean;
-  formErrors: object;
+  formErrors: UserForm | null;
 }
 
 const initialState: userState = {
@@ -29,7 +29,7 @@ const initialState: userState = {
   loginUser: loginUserTemplate,
   registerUser: registerUserTemplate,
   isLoggedIn: false,
-  formErrors: {},
+  formErrors: null,
 };
 
 const userSlice = createSlice({
@@ -48,9 +48,21 @@ const userSlice = createSlice({
       state.isLoggedIn = !state.isLoggedIn;
     },
     // Work on error handling for forms
-    // setFormErrors(state, action) {
-    //
-    // }
+    setFormErrors(state, action) {
+      const errors = action.payload;
+
+      const newFormErrors = {
+        firstName: errors.FirstName[0],
+        lastName: errors.LastName[0],
+        userName: errors.UserName[0],
+        region: errors.Region[0],
+        email: errors.Email[0],
+        password: errors.Password[0],
+        confirmPassword: undefined
+      };
+
+      state.formErrors = newFormErrors;
+    }
   },
 });
 

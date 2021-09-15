@@ -33,9 +33,16 @@ export const register = (creds: UserForm) => {
             return user;
         };
 
-        const user = await registerRequest(creds);
+        try {
+            const user = await registerRequest(creds);
 
-        console.log(user);
-        dispatch(userActions.setIsLoggedIn());
+            console.log(user);
+            dispatch(userActions.setIsLoggedIn());
+        } catch (error) {
+            const { errors } = error.response.data
+            dispatch(userActions.setFormErrors(errors));
+        }
+
+
     }
 };
