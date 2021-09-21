@@ -42,7 +42,7 @@ export const RegisterForm = () => {
               fullWidth
               onChange={handleInputChange}
               className={classes.tabTextField}
-              {...(formErrors && { error: true, helperText: formErrors.firstName })}
+              {...(formErrors && { error: true, helperText: formErrors.FirstName })}
             />
             <TextField
               label="Last Name"
@@ -53,7 +53,7 @@ export const RegisterForm = () => {
               fullWidth
               onChange={handleInputChange}
               className={classes.tabTextField}
-              {...(formErrors && { error: true, helperText: formErrors.lastName })}
+              {...(formErrors && { error: true, helperText: formErrors.LastName })}
             />
             <TextField
                 label="User Name"
@@ -64,7 +64,7 @@ export const RegisterForm = () => {
                 fullWidth
                 onChange={handleInputChange}
                 className={classes.tabTextField}
-                {...(formErrors && { error: true, helperText: formErrors.userName })}
+                {...(formErrors && { error: true, helperText: formErrors.UserName })}
             />
             <TextField
               label="Region"
@@ -75,7 +75,7 @@ export const RegisterForm = () => {
               fullWidth
               onChange={handleInputChange}
               className={classes.tabTextField}
-              {...(formErrors && { error: true, helperText: formErrors.region })}
+              {...(formErrors && { error: true, helperText: formErrors.Region })}
             />
             <TextField
               label="Email"
@@ -86,7 +86,7 @@ export const RegisterForm = () => {
               fullWidth
               onChange={handleInputChange}
               className={classes.tabTextField}
-              {...(formErrors && { error: true, helperText: formErrors.email })}
+              {...(formErrors && { error: true, helperText: formErrors.Email })}
             />
             <TextField
               label="Password"
@@ -97,7 +97,7 @@ export const RegisterForm = () => {
               fullWidth
               onChange={handleInputChange}
               className={classes.tabTextField}
-              {...(formErrors && { error: true, helperText: formErrors.password })}
+              {...(formErrors && { error: true, helperText: formErrors.Password })}
             />
             <TextField
               label="Confirm Password"

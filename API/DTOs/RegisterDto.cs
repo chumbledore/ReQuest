@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace API.DTOs
 {
-    public class RegisterDTO
+    public class RegisterDto
     {
         [Required]
         public string FirstName { get; set; }
@@ -15,6 +15,10 @@ namespace API.DTOs
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+        /// <summary>
+        /// Regex for the password should meet the complexity requirement found in the
+        /// options of IdentityServiceExtensions
+        /// </summary>
         [Required]
         [RegularExpression("(?=.*\\d)(?=.*[a-z]).{4,12}$", ErrorMessage = "Password must contain a number, and be between 4 to 12 characters in length.")]
         public string Password { get; set; }

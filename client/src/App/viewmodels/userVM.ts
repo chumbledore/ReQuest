@@ -13,3 +13,13 @@ export interface UserForm {
   firstName?: string;
   lastName?: string;
 }
+
+export interface Errors {
+  Email: string;
+  Password: string;
+  UserName?: string;
+  ConfirmPassword?: string;
+  Region?: string;
+  FirstName?: string;
+  LastName?: string;
+}

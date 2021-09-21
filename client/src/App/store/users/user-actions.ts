@@ -3,7 +3,7 @@ import agent from "../../api/agent";
 import {UserForm} from "../../viewmodels/userVM";
 import {userActions} from "./user-slice";
 
-// setup user actions here
+// User async thunks
 export const login = (creds: UserForm) => {
     return async (dispatch: Dispatch) => {
         const loginRequest = async (creds: UserForm) => {
@@ -39,7 +39,9 @@ export const register = (creds: UserForm) => {
             console.log(user);
             dispatch(userActions.setIsLoggedIn());
         } catch (error) {
-            const { errors } = error.response.data
+            dispatch(userActions.clearFormErrors());
+
+            const { errors } = error.response.data;
             dispatch(userActions.setFormErrors(errors));
         }
 

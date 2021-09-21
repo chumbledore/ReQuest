@@ -15,6 +15,7 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class AccountController : ControllerBase
     {
+        
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly TokenService _tokenService;
@@ -28,11 +29,11 @@ namespace API.Controllers
         }
 
     [HttpPost("login")]
-    public async Task<ActionResult<UserReturnDTO>> Login(LoginDTO loginDTO)
+    public async Task<ActionResult<UserReturnDto>> Login(LoginDto loginDto)
     {
-        var user = await _userManager.FindByEmailAsync(loginDTO.Email);
+        var user = await _userManager.FindByEmailAsync(loginDto.Email);
 
-        var result = await _signInManager.CheckPasswordSignInAsync(user, loginDTO.Password, false);
+        var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
 
         if (result.Succeeded)
         {
@@ -41,14 +42,15 @@ namespace API.Controllers
 
         return Unauthorized();
     }
-
+    
     [HttpPost("register")]
-    public async Task<ActionResult<UserReturnDTO>> Register(RegisterDTO registerDto)
+    public async Task<ActionResult<UserReturnDto>> Register(RegisterDto registerDto)
     {
         if (await _userManager.Users.AnyAsync(x => x.Email == registerDto.Email))
         {
             return BadRequest("That email is already in use");
         };
+        
         var user = new AppUser
         {
             FirstName = registerDto.FirstName,
@@ -70,16 +72,16 @@ namespace API.Controllers
 
     [Authorize]
     [HttpGet]
-    public async Task<ActionResult<UserReturnDTO>> GetCurrentUser()
+    public async Task<ActionResult<UserReturnDto>> GetCurrentUser()
     {
         var user = await _userManager.FindByEmailAsync(User.FindFirstValue(ClaimTypes.Email));
 
         return CreateUserObject(user);
     }
-
-    private UserReturnDTO CreateUserObject(AppUser user)
+    
+    private UserReturnDto CreateUserObject(AppUser user)
     {
-        return new UserReturnDTO
+        return new UserReturnDto
             {
                 FirstName = user.FirstName,
                 LastName = user.LastName,

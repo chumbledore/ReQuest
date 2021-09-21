@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { User, UserForm } from "../../viewmodels/userVM";
+import {Errors, User, UserForm} from "../../viewmodels/userVM";
 
 const loginUserTemplate = {
   email: "",
@@ -21,7 +21,7 @@ interface userState {
   loginUser: UserForm;
   registerUser: UserForm;
   isLoggedIn: boolean;
-  formErrors: UserForm | null;
+  formErrors: Errors | null;
 }
 
 const initialState: userState = {
@@ -47,21 +47,11 @@ const userSlice = createSlice({
     setIsLoggedIn(state) {
       state.isLoggedIn = !state.isLoggedIn;
     },
-    // Work on error handling for forms
+    clearFormErrors(state){
+      state.formErrors = null;
+    },
     setFormErrors(state, action) {
-      const errors = action.payload;
-
-      const newFormErrors = {
-        firstName: errors.FirstName[0],
-        lastName: errors.LastName[0],
-        userName: errors.UserName[0],
-        region: errors.Region[0],
-        email: errors.Email[0],
-        password: errors.Password[0],
-        confirmPassword: undefined
-      };
-
-      state.formErrors = newFormErrors;
+      state.formErrors = action.payload;
     }
   },
 });
